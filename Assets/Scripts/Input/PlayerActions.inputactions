@@ -1,0 +1,33 @@
+{
+    "name": "PlayerActions",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "509f6633-cf8f-4204-929f-5d0ded18d59d",
+            "actions": [
+                {
+                    "name": "PlaceTurret",
+                    "type": "Button",
+                    "id": "51a1abc4-f618-49c0-a72b-facbaeae88b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5d4718b8-f2f9-4c1f-928d-64fb53811c1b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceTurret",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

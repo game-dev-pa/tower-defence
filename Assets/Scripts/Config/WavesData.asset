@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f329403f77e742949913adc6aa560902, type: 3}
+  m_Name: WavesData
+  m_EditorClassIdentifier: 
+  <Waves>k__BackingField:
+  - <CreepData>k__BackingField: {fileID: 11400000, guid: cf26b5dd86f6dea45803115d749abede,
+      type: 2}
+    <Count>k__BackingField: 5
+    <SpawnInterval>k__BackingField: 3
+  - <CreepData>k__BackingField: {fileID: 11400000, guid: 1e5eee32d7704224fb07b8d1bcd94463,
+      type: 2}
+    <Count>k__BackingField: 5
+    <SpawnInterval>k__BackingField: 2

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389a64266c30418a8e65558c125453f6, type: 3}
+  m_Name: TurretData_Regular
+  m_EditorClassIdentifier: 
+  <Type>k__BackingField: 0
+  <Prefab>k__BackingField: {fileID: 3312728997542272041, guid: ad95cf0532fb840edb99302196037be4,
+    type: 3}
+  <ProjectileSpeed>k__BackingField: 10
+  <FireRate>k__BackingField: 1
+  <ImpactRadius>k__BackingField: 5
+  <Damage>k__BackingField: 1
+  <Cost>k__BackingField: 5
+  <FreezeAmount>k__BackingField: 0
+  <FreezeDuration>k__BackingField: 0
