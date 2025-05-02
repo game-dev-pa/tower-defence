@@ -1,75 +1,91 @@
-# Tower Defense Game (Unity)
-A simple but well-architected tower defense game built with Unity, featuring creeps, turrets, waves, and base defense mechanics. Designed with SOLID principles, dependency injection, and clean separation of concerns.
+# 🛡️ Tower Defense (Unity) – Technical Assessment Project
 
----
+This repository contains a **Tower Defense game prototype built in Unity** as part of a **timed technical assessment**. The entire implementation was completed in **under 16 hours across 4 days**, with a strong focus on:
 
-## Documentation
+- Clean and extensible architecture  
+- SOLID principles and testability  
+- Responsiveness and runtime performance  
+- Team-scalable codebase for future iteration  
 
-### How to Play
-- Press Play in the MainScene. You will start with 100 coins, displayed in the top-left corner.
-- Waves of creeps spawn randomly from four spawn points and march toward the base.
-- Use the Regular and Freezing buttons at the bottom-right to select which turret to place.
-- Click on the terrain to place the selected turret. (Each turret has a coin cost. If you lack funds, placement is blocked, and the coin text flashes red.)
-- Regular Turrets deal damage, while Freezing Turrets slow creeps with a speed debuff.
-- When a creep reaches the base, it deals damage. If base health reaches zero, the Lose popup appears.
-- If all creeps from all waves are destroyed before the base is, the Win popup appears.
+> ⚠️ This project was built to match a **pre-defined set of gameplay and architectural requirements**. The original instructions are paraphrased to protect confidentiality and **avoid being indexed as a direct solution** to any specific company's technical assessment.
 
----
+> 🧪 This is **not a polished final product**, but rather a **framework showcasing technical depth, architectural foresight, and fast turnaround capability**.
 
-### Game Design (Assets/Scripts/Config)
-- Starting Coins and BaseMaxHealth can be set in `GameConfigSO`.
-- A creep's MovementSpeed, Health, RewardsOnKill, and DamageToBase are defined in `CreepDataSO`.
-- Waves, NumberOfCreepsToSpawn, and SpawnInterval are defined in `WaveDataSO`.
-- Turret stats, such as TurretFireRate, TurretImpactRadius, DamageToCreep, and TurretCost, are fetched from `TurretDataSO`.
+## 🎯 Challenge Scope
 
----
+The goal was to implement a functional tower defense game with the following features:
 
-### Architecture Principles
-Followed core architectural and coding principles:
-- **POCO-First Design**: Core logic in Plain Old C# Objects, using MonoBehaviour only for Unity hooks
-- **SOLID Principles**: Single responsibility, dependency injection, and Strategy pattern
-- **VContainer**: For dependency injection and lifetime management
-- **MVP-Style**: Business logic separated from presentation
-- **Async/Await**: For wave spawning with cancellation support
-- **Observer Pattern**: Events for game state changes
+- A central **base** that enemies (creeps) try to reach  
+- Creeps **spawn from predefined locations** and move straight toward the base  
+- Easily configurable **creep stats** and **spawn behavior**  
+- **Lose condition** if creeps reach the base (displays `LosePopup`)  
+- Player can place **turrets** using mouse input  
+- Turrets **automatically detect and shoot** nearby creeps  
+- Projectiles apply **damage** to creeps  
+- Fully tunable **damage and health** values  
+- **Coin-based economy**: Turrets cost coins, creeps drop coins on death  
+- Two turret types: **Standard** and **Freeze/Slow-down**  
+- Multiple creep types with varying **speed** and **health**  
+- A **wave system** where next wave spawns after current is cleared  
+- **Win condition** when all waves are cleared and base survives (`WinPopup`)
 
----
+## 🧱 Architecture and Design Philosophy
 
-## Systems and Implementation
+This project follows a **POCO-first, MonoBehaviour-isolated architecture**.
 
-### 1. Game State
-- Tracks coins, wave index, and win/loss conditions
-- Win condition requires both wave completion and all creeps dead
+Key decisions and patterns:
 
-### 2. Creep Pooling
-- Custom pooling system for creep management
+- **SOLID Principles**: Clean separation of concerns via interfaces like `ICreep`, `ITurret`, `IProjectile`, etc.  
+- **Event-Driven**: All game state transitions (win/loss, wave clear, coin updates) are based on event dispatching  
+- **Strategy & Observer Patterns**: Used for different turret and creep behaviors via composition, not inheritance  
+- **Scalability First**: Each system (spawning, placement, economy, waves) is decoupled and extensible  
+- **DI-Ready Structure**: The architecture can support tools like `VContainer`, although no external packages were used here for minimal setup friction
 
-### 3. Base Defense
-- Proximity-based damage system to base
+## ⚙️ Features Overview
 
-### 4. Turret System
-- Strategy pattern for different turret behaviors
-- Projectile pooling for efficiency
+| System             | Description                                                                 |
+|--------------------|-----------------------------------------------------------------------------|
+| 🎮 Input System     | Unity New Input System – mouse-based turret placement                      |
+| 🧠 GameManager      | Central coordinator for win/loss logic, wave state, and UI popups           |
+| 🚀 Creep System     | Multiple creep types, tunable attributes, spawn-point-based instantiation   |
+| 🛡️ Turret System    | Two turret types: standard and slow-down, placed dynamically by player      |
+| 💥 Projectile System| Projectile logic handles damage, collision, and status effects              |
+| 💰 Economy          | Kill-based coin reward system and turret purchase cost                     |
+| 🕹️ Wave System      | Sequential wave control with clean transitions and completion detection     |
+| 📊 UI Popups        | Win/Loss popup UI triggered via event observers                             |
 
-### 5. Economy System
-- Reactive UI updates for coins and health
+## 📝 Development Notes
 
-### 6. Wave System
-- Async wave sequencing with cancellation support
+- **Total dev time:** ~16 hours  
+- **Time span:** 4 days  
+- **Unity version:** 2022.3 LTS  
+- **Language:** C#  
+- **Libraries:** None (for easy clone-and-play testing)
 
-### 7. Pause Management
-- Custom pause system controlling game elements individually
+## 📁 How to Run
 
----
+```bash
+1. git clone https://github.com/game-dev-pa/tower-defence
+2. Open the project in Unity 2022.3 LTS or a compatible version
+3. Open the MainScene
+4. Press Play
+```
 
-## Potential Improvements
-- Turret selection via keyboard input
-- Better spawn point selection logic
-- Additional turret/creep types
-- Game reset after win/loss
+## 👨‍💻 About This Project
 
----
+This was completed as a technical showcase project, ideal for evaluating:
+- My ability to translate high-level feature goals into clean architecture
+- How I prioritize maintainability and scalability under tight deadlines
+- My decision-making and tradeoffs in systems-level Unity development
 
-## License  
-This project is licensed under the **MIT License**.
-*Note: Created for portfolio/educational purposes. Not for commercial use.*  
+
+## 🙋‍♂️ Why This Repo Matters
+
+This project is a great snapshot of how I approach **problem-solving under time constraints** with a strong emphasis on **code clarity, system thinking, and scalability**. Whether you're a recruiter, hiring manager, or fellow developer — I hope you enjoy exploring the code as much as I enjoyed building it.
+
+
+## 🧠 Contact
+
+Feel free to explore the code or reach out if you have questions, feedbacks or ideas.
+
+[LinkedIn](https://linkedin.com/in/game-dev-pa) | [Email](mailto:game.dev.pa@gmail.com)
