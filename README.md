@@ -81,7 +81,7 @@ This was completed as a technical showcase project, ideal for evaluating:
 
 ## 🙋‍♂️ Why This Repo Matters
 
-This project is a great snapshot of how I approach **problem-solving under time constraints** with a strong emphasis on **code clarity, system thinking, and scalability**. Whether you're a recruiter, hiring manager, or fellow developer — I hope you enjoy exploring the code as much as I enjoyed building it.
+This project is a great snapshot of how I approach **problem-solving under time constraints** with a strong emphasis on **code clarity, system thinking, and scalability**. Whether you're a recruiter, hiring manager, or fellow developer, I hope you enjoy exploring the code as much as I enjoyed building it.
 
 
 ## 🧠 Contact
