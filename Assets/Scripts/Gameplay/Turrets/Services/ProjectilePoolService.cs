@@ -16,11 +16,7 @@ namespace Gameplay.Turrets.Services
             _projectilePrefab = projectilePrefab;
             _parentHolder = parentHolder;
 
-            _objectPool = new ObjectPool<ProjectileControllerView>(
-                Create,
-                onGetFromPoolCallback: GetFromPool,
-                onReturnToPoolCallback: ReturnToPool
-            );
+            _objectPool = new ObjectPool<ProjectileControllerView>(Create);
         }
 
         public void Spawn(
@@ -50,16 +46,6 @@ namespace Gameplay.Turrets.Services
             projectileObject.SetActive(false);
             var projectileController = projectileObject.GetComponent<ProjectileControllerView>();
             return projectileController;
-        }
-
-        private void GetFromPool(ProjectileControllerView projectileControllerView)
-        {
-            projectileControllerView.OnGetFromPool();
-        }
-
-        private void ReturnToPool(ProjectileControllerView projectileControllerView)
-        {
-            projectileControllerView.OnReturnToPool();
         }
 
         private void OnHitCallback(ProjectileControllerView projectileControllerView)

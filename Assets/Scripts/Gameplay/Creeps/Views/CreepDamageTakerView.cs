@@ -1,10 +1,13 @@
 using System;
+using Shared;
 using UnityEngine;
 
 namespace Gameplay.Creeps.Views
 {
-    public sealed class CreepDamageTakerView : MonoBehaviour, ICreepDamageTaker, IFreezable
+    public sealed class CreepDamageTakerView : MonoBehaviour, ICreepDamageTaker, IFreezable, ITargetable
     {
+        public Transform Transform => transform;
+
         public event Action<float> OnTakeDamage;
         public event Action<float, float> OnApplyFreeze;
 

@@ -4,25 +4,19 @@ using System.Collections.Generic;
 
 namespace Shared.Pooling
 {
-    public sealed class ObjectPool<T> where T : class
+    public sealed class ObjectPool<T> where T : ICanPool
     {
         private readonly int _maxPoolSize;
         private readonly Func<T> _createFunctionCall;
         private readonly Stack<T> _poolStack = new Stack<T>();
-
-        private readonly Action<T>? OnGetFromPoolCallback;
-        private readonly Action<T>? OnReturnToPoolCallback;
-
+        
         public ObjectPool(
             Func<T> createFunctionCall,
             int initialPoolCapacity = 10,
-            int maxPoolSize = 50,
-            Action<T>? onGetFromPoolCallback = null,
-            Action<T>? onReturnToPoolCallback = null)
+            int maxPoolSize = 50)
         {
             _createFunctionCall = createFunctionCall ?? throw new ArgumentNullException(nameof(createFunctionCall));
-            OnGetFromPoolCallback = onGetFromPoolCallback;
-            OnReturnToPoolCallback = onReturnToPoolCallback;
+            
             _maxPoolSize = maxPoolSize;
 
             for (var i = 0; i < initialPoolCapacity; i++)
@@ -32,8 +26,7 @@ namespace Shared.Pooling
         public T GetFromPool()
         {
             var pooledItem = _poolStack.Count > 0 ? _poolStack.Pop() : _createFunctionCall();
-            OnGetFromPoolCallback?.Invoke(pooledItem);
-            (pooledItem as ICanPool)?.OnGetFromPool();
+            pooledItem.OnGetFromPool();
             return pooledItem;
         }
 
@@ -41,8 +34,7 @@ namespace Shared.Pooling
         {
             if (_poolStack.Count >= _maxPoolSize) return;
 
-            OnReturnToPoolCallback?.Invoke(pooledItem);
-            (pooledItem as ICanPool)?.OnReturnToPool();
+            pooledItem.OnReturnToPool();
             _poolStack.Push(pooledItem);
         }
     }

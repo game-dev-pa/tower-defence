@@ -50,11 +50,7 @@ namespace Gameplay.Creeps.Services
 
         private ObjectPool<CreepControllerView> CreatePool(CreepData data)
         {
-            return new ObjectPool<CreepControllerView>(
-                () => CreateCreep(data),
-                onGetFromPoolCallback: GetFromPool,
-                onReturnToPoolCallback: ReturnToPool
-            );
+            return new ObjectPool<CreepControllerView>(() => CreateCreep(data));
         }
 
         private CreepControllerView CreateCreep(CreepData creepData)
@@ -64,16 +60,6 @@ namespace Gameplay.Creeps.Services
             creep.SetActive(false);
             var creepController = creep.GetComponent<CreepControllerView>();
             return creepController;
-        }
-
-        private void GetFromPool(CreepControllerView creepControllerView)
-        {
-            creepControllerView.OnGetFromPool();
-        }
-
-        private void ReturnToPool(CreepControllerView creepControllerView)
-        {
-            creepControllerView.OnReturnToPool();
         }
 
         private void OnDiedCallback(CreepControllerView creepControllerView)
