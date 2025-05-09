@@ -1,7 +1,7 @@
 #nullable enable
 using System;
 using Config;
-using Gameplay.Creeps;
+using Gameplay.Creeps.Views;
 using Gameplay.Turrets.Services;
 using Shared.PauseGame;
 using UnityEngine;
@@ -18,8 +18,8 @@ namespace Gameplay.Turrets.Views
 
         private float _fireCooldown;
         private float _timeSinceLastShot;
-        private IShootStrategy? _shootStrategy;
-        private IShootStrategyFactory? _shootStrategyFactory;
+        private IShootStrategy _shootStrategy = null!;
+        private IShootStrategyFactory _shootStrategyFactory = null!;
 
         [Inject]
         public void Construct(IShootStrategyFactory shootStrategyFactory)
@@ -45,15 +45,15 @@ namespace Gameplay.Turrets.Views
                 throw new NullReferenceException("TurretData NOT assigned!!");
 
             _fireCooldown = 1f / _turretData.FireRate;
-            _shootStrategy = _shootStrategyFactory?.CreateStrategy(_turretData);
+            _shootStrategy = _shootStrategyFactory.CreateStrategy(_turretData);
         }
 
-        private ICreepDamageTaker? FindTargetInRange()
+        private CreepDamageTakerView? FindTargetInRange()
         {
             var hitCount = Physics.OverlapSphereNonAlloc(transform.position, _turretData!.ImpactRadius, Colliders);
             for (var i = 0; i < hitCount; i++)
             {
-                if (Colliders[i].TryGetComponent<ICreepDamageTaker>(out var target))
+                if (Colliders[i].TryGetComponent<CreepDamageTakerView>(out var target))
                 {
                     return target;
                 }

@@ -1,4 +1,5 @@
 using Gameplay.Creeps;
+using Shared;
 using UnityEngine;
 
 namespace Gameplay.Turrets.Services
@@ -16,11 +17,11 @@ namespace Gameplay.Turrets.Services
             _damage = damage;
         }
 
-        public void Shoot(Transform origin, ICreepDamageTaker target)
+        public void Shoot<T>(Transform origin, T target) where T : ICreepDamageTaker, ITargetable
         {
             _projectilePoolService.Spawn(
                 origin.position,
-                ((MonoBehaviour)target).transform,
+                target.Transform,
                 _damage,
                 _projectileSpeed,
                 0f,
